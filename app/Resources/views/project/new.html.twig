@@ -1,16 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
 
 {% block body %}
-    <h1>Project creation</h1>
+    <h1>Přidat projekt</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input type="submit" value="Uložit"  class="btn btn-success" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_project_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <a href="{{ path('admin_project_index') }}" class="btn btn-info">Zpět na výpis</a>
 {% endblock %}

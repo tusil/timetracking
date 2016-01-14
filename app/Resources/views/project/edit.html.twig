@@ -1,21 +1,22 @@
-{% extends 'base.html.twig' %}
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
 
 {% block body %}
-    <h1>Project edit</h1>
+    <h1>Úprava projektu</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        <input type="submit" value="Uložit" class="btn btn-success" />
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_project_index') }}">Back to the list</a>
-        </li>
-        <li>
+    <br>
+
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <div class="btn-group" role="group" aria-label="...">
+              <a href="{{ path('admin_project_index') }}" class="btn btn-info">Zpět na výpis</a>
+              <input type="submit" value="Smazat" class="btn btn-danger">
+            
+            </div>
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}
