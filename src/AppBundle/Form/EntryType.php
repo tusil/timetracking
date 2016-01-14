@@ -17,12 +17,12 @@ class EntryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('user')
-            ->add('issuedAt')
-            ->add('hours')
-            ->add('description', TextType::class)
+            ->add('user', null, array('label'=>'Uživatel'))
+            ->add('issuedAt', null, array('label'=>'Datum'))
+            ->add('hours', null, array('label'=>'Hodiny'))
+            ->add('description', TextType::class, array('label'=>'Popis'))
 //            ->add('isPaid')
-            ->add('save', SubmitType::class)
+            ->add('save', SubmitType::class, array('label'=>'Uložit', 'attr'=>array('class'=>'btn btn-success')))
         ;
     }
     

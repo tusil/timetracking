@@ -10,7 +10,7 @@
   <tr class="form active">
     <td>{{ form_widget(form.issuedAt) }}</td>
     <td>{{ form_widget(form.user) }}</td>
-    <td>{{ form_widget(form.hours, {'attr': {'size': '2', 'placeholder': 'čas'}}) }}</td>
+    <td>{{ form_widget(form.hours, {'attr': {'size': '2', 'placeholder': 'hodiny'}}) }}</td>
     <td>{{ form_widget(form.description, {'attr': {'placeholder': 'popis'}}) }}</td>
     <td>{{ form_widget(form.save) }}</td>
   </tr>
@@ -19,7 +19,13 @@
     <td>{{ entry.issuedAt|date('d. m.') }}</td>
     <td>{{ entry.user }}</td>
     <td><strong>{{ entry.hours }}</strong></td>
-    <td colspan="2">{{ entry.description }}</td>
+    <td>{{ entry.description }}</td>
+    <td>
+      <div class="btn-group" role="group" aria-label="...">
+        <a href="{{ path('app_entry_edit', {'id': entry.id}) }}" class="btn btn-default item-edit">Upravit</a>
+        <a href="{{ path('app_entry_delete', {'id': entry.id}) }}" class="btn btn-danger item-remove">Smazat</a>
+      </div>
+    </td>
   </tr>
 {% endfor %}
 </table>

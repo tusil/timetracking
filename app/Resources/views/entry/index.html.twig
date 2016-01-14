@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Entry list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Issuedat</th>
+                <th>Createdat</th>
+                <th>Hours</th>
+                <th>Description</th>
+                <th>Ispaid</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entry in entries %}
+            <tr>
+                <td><a href="{{ path('app_entry_show', { 'id': entry.id }) }}">{{ entry.id }}</a></td>
+                <td>{% if entry.issuedAt %}{{ entry.issuedAt|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if entry.createdAt %}{{ entry.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entry.hours }}</td>
+                <td>{{ entry.description }}</td>
+                <td>{% if entry.isPaid %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('app_entry_show', { 'id': entry.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_entry_edit', { 'id': entry.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('app_entry_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
