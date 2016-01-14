@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Project list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Isbilled</th>
+                <th>Isgrouped</th>
+                <th>Groupname</th>
+                <th>Rate</th>
+                <th>Minhours</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for project in projects %}
+            <tr>
+                <td><a href="{{ path('admin_project_show', { 'id': project.id }) }}">{{ project.id }}</a></td>
+                <td>{{ project.name }}</td>
+                <td>{% if project.isBilled %}Yes{% else %}No{% endif %}</td>
+                <td>{% if project.isGrouped %}Yes{% else %}No{% endif %}</td>
+                <td>{{ project.groupName }}</td>
+                <td>{{ project.rate }}</td>
+                <td>{{ project.minHours }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_project_show', { 'id': project.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_project_edit', { 'id': project.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_project_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

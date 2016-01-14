@@ -1,0 +1,27 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block body %}
+
+<h1>{{ project }}</h1>
+{{ form_start(form) }}
+<table class="table table-condensed">
+  <tr class="form active">
+    <td>{{ form_widget(form.issuedAt) }}</td>
+    <td>{{ form_widget(form.user) }}</td>
+    <td>{{ form_widget(form.hours, {'attr': {'size': '2', 'placeholder': 'čas'}}) }}</td>
+    <td>{{ form_widget(form.description, {'attr': {'placeholder': 'popis'}}) }}</td>
+    <td>{{ form_widget(form.save) }}</td>
+  </tr>
+{% for entry in entries %}
+  <tr>
+    <td>{{ entry.issuedAt|date('d. m.') }}</td>
+    <td>{{ entry.user }}</td>
+    <td><strong>{{ entry.hours }}</strong></td>
+    <td colspan="2">{{ entry.description }}</td>
+  </tr>
+{% endfor %}
+</table>
+{{ form_end(form) }}
+{% endblock %}

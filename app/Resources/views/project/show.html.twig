@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Project</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ project.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ project.name }}</td>
+            </tr>
+            <tr>
+                <th>Isbilled</th>
+                <td>{% if project.isBilled %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Isgrouped</th>
+                <td>{% if project.isGrouped %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Groupname</th>
+                <td>{{ project.groupName }}</td>
+            </tr>
+            <tr>
+                <th>Rate</th>
+                <td>{{ project.rate }}</td>
+            </tr>
+            <tr>
+                <th>Minhours</th>
+                <td>{{ project.minHours }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_project_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_project_edit', { 'id': project.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
